@@ -6,8 +6,9 @@
 
 body {
   font-size: 14px;
+  background-color: rgb(241, 238, 238);
 }
-
+/*
 div {
   width: 100%;
   margin: 20px;
@@ -36,4 +37,90 @@ button {
 div li button {
   margin: 0 15px;
   background: #ca4949;
+}
+*/
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+
+  max-width: 960px;
+  background-color: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border-bottom: 1px solid #e1e4e8 !important;
+  padding: 25px;
+}
+
+.items .items-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.items .items-header h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: hsl(212, 39%, 52%);
+}
+
+.items .items-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.items .items-footer button {
+  background: #ca4949;
+}
+
+.items .items-footer p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #24292e;
+}
+
+.items .items-footer p span {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: bold;
+  background-color: #3581c9;
+  border-radius: 5px;
+  padding: 5px;
+  color: #fff;
+}
+
+button {
+  background: #7159c1;
+  color: #fff;
+  border: 0;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 90px;
+  border-radius: 5px;
+}
+
+.container > button {
+  width: 100%;
 }

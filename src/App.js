@@ -27,7 +27,7 @@ function App() {
 
   async function handleRemoveRepository(id) {
     // TODO
-    const response = await api.delete(`/repositories/${id}`);
+    await api.delete(`/repositories/${id}`);
 
     const remainingRepositories = await repositories.filter(
       (repository) => repository.id !== id
@@ -36,20 +36,48 @@ function App() {
     setRepositories([...remainingRepositories]);
   }
 
+  async function handleLikeRepository(id) {
+    const { data } = await api.post(`/repositories/${id}/like`);
+
+    const indexRepository = await repositories.findIndex(
+      (repository) => repository.id === id
+    );
+
+    repositories[indexRepository].likes = data.likes;
+
+    setRepositories([...repositories]);
+  }
+
   return (
-    <div>
-      <ul data-testid="repository-list">
+    <div className="container">
+      <ul data-testid="repository-list" className="content">
         {repositories.map((repository) => (
-          <li key={repository.id}>
-            {repository.title}
-            <button onClick={() => handleRemoveRepository(repository.id)}>
-              Remover
-            </button>
+          <li key={repository.id} className="items">
+            <div className="items-header">
+              <h3>{repository.title}</h3>
+              <button onClick={() => handleLikeRepository(repository.id)}>
+                Like
+              </button>
+            </div>
+
+            <div className="items-footer">
+              <p>
+                {repository.techs.join(", ")}{" "}
+                {repository.likes > 0 ? (
+                  <span> {repository.likes + " Likes"} </span>
+                ) : (
+                  ""
+                )}
+              </p>
+              <button onClick={() => handleRemoveRepository(repository.id)}>
+                Remover
+              </button>
+            </div>
           </li>
         ))}
-      </ul>
 
-      <button onClick={handleAddRepository}>Adicionar</button>
+        <button onClick={handleAddRepository}>Adicionar</button>
+      </ul>
     </div>
   );
 }
